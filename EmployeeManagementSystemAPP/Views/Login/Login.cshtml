@@ -1,0 +1,123 @@
+﻿@model EmployeeManagementSystemAPP.Models.Login;
+
+@{
+    ViewData["Title"] = "Login";
+    //Layout = "_Layout;
+}
+
+<div class="card shadow-lg p-4 rounded">
+    <div class="card-body">
+        <h3 class="card-title text-center mb-4">Login</h3>
+        <form asp-action="Login" method="post">
+            <!-- Anti-forgery token for security -->
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">Username</label>
+                <input asp-for="UserName" class="form-control" placeholder="Enter your username" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            @* <div class="form-group form-check">
+                <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+            </div> *@
+
+            <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+
+            <div class="mt-3 text-center">
+                <a href="/User/Create">Don't have an account? Register here.</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add this custom CSS to further enhance the form style -->
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 5%;
+        background-color: #ffffff;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #495057;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 0.375rem;
+        box-shadow: none;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+    .form-check-input {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-check-label {
+        font-weight: normal;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 0.75rem 1.25rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 0.375rem;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .btn-block {
+        width: 100%;
+    }
+
+    .text-center a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

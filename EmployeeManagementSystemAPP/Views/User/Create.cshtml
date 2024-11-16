@@ -1,0 +1,47 @@
+﻿@model EmpManagementSystemAPI.Models.User
+
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Form for user registration -->
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()  <!-- CSRF protection -->
+    <!-- Email Field -->
+    <div class="form-group">
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <!-- IsActive Checkbox -->
+    <div class="form-check">
+        <input asp-for="IsActive" type="checkbox" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label">Is Active</label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Register</button>
+    <a class="btn btn-success" asp-action="Login" asp-controller="Login">Back</a>
+</form>
+
+<!-- Validation Scripts -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
